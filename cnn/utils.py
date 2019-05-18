@@ -79,6 +79,19 @@ def _data_transforms_cifar10(args):
   return train_transform, valid_transform
 
 
+def _data_transforms_mnist(args):
+    train_transform = transforms.Compose([
+        transforms.ToTensor(),
+    ])
+    if args.cutout:
+        train_transform.transforms.append(Cutout(args.cutout_length))
+
+    valid_transform = transforms.Compose([
+        transforms.ToTensor(),
+    ])
+    return train_transform, valid_transform
+
+
 def count_parameters_in_MB(model):
   return np.sum(np.prod(v.size()) for name, v in model.named_parameters() if "auxiliary" not in name)/1e6
 

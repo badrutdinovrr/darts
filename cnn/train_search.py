@@ -83,7 +83,8 @@ def main():
       momentum=args.momentum,
       weight_decay=args.weight_decay)
 
-  train_transform, valid_transform = utils._data_transforms_cifar10(args)
+  #train_transform, valid_transform = utils._data_transforms_cifar10(args)
+  train_transform, valid_transform = utils._data_transforms_mnist(args)
   train_data = dset.MNIST(root=args.data, train=True, download=True, transform=train_transform)
 
   num_train = len(train_data)
